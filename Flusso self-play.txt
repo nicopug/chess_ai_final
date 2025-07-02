@@ -1,0 +1,6 @@
+Il flusso di lavoro tipico di questo sistema è:
+1. Generazione dei dati (attraverso self-play)
+2. Preparazione dei dati (usando data_preparation.py)
+3. Training della rete (usando incremental_trainer.py)
+4. Valutazione del nuovo modello (usando evaluator.py)
+5. Ripeti il ciclo

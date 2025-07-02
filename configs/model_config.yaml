@@ -1,0 +1,51 @@
+# Chess AI Model Configuration
+model:
+  # Architettura della rete
+  filters: 64                  # Numero filtri convoluzionali (ridotto per efficienza)
+  residual_blocks: 2           # Blocchi residui (ottimo compromesso prestazioni/tempo)
+  policy_head_units: 512       # Dimensione layer denso policy head
+  activation: "swish"          # Funzione di attivazione (migliore di relu per questo caso)
+  value_head_units: [128, 64]  # Aumenta capacità value network
+
+  # Regolarizzazione
+  dropout_rate: 0.35         # Dropout (30% per prevenire overfitting)
+  l2_regularization: 0.0001  # Molto leggero (aiuta a stabilizzare il value MAE)
+
+training:
+  # Configurazione epoch e batch
+  batch_size: 64              # Grande abbastanza per stabilità, piccolo per efficienza
+  epochs: 150                 # Abbondante per convergenza
+  validation_split: 0.15      # 15% dati per validation
+
+  # Learning Rate Schedule
+  lr_schedule:
+    initial_learning_rate: 0.0006  # LR iniziale (come nei tuoi migliori risultati)
+    decay_steps: 8                 # Applica decay ogni 16 epoch
+    decay_rate: 0.92              # Decay più aggressivo
+
+  # Early Stopping
+  early_stopping:
+    monitor: val_policy_accuracy
+    patience: 20      # Ferma se nessun miglioramento dopo 15 epoch
+    min_delta: 0.005  # Miglioramento minimo richiesto
+
+data:
+  # Configurazione generazione dati
+  samples_per_epoch: 20000         # Circa 125 batch (20000/128)
+  augmentation: True               # Abilita mirror/rotazione
+  strategic_positions_weight: 0.7  # Peso per posizioni strategiche
+
+data_processing:
+  max_game_length: 120        # Taglia partite troppo lunghe
+  min_material_diff: -5       # Filtra posizioni troppo squilibrate
+
+advanced:
+  use_attention: True          # Abilita MultiHeadAttention
+  self_play:                   # Configurazione self-play
+    enabled: False
+    games_per_generation: 100
+    temperature: 1.0
+
+evaluation:
+  test_frequency: 5           # Ogni 5 epoch
+  test_games: 20              # Numero partite di test

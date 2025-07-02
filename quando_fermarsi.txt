@@ -1,0 +1,42 @@
+Quando Fermare l'Addestramento?
+Usa questa checklist:
+    Accuracy su validation stabile per 20+ epoch (< 0.5% miglioramento)
+    MAE value head < 0.12
+    Il modello batte Stockfish livello 3 in 4/5 partite
+    Risorse computazionali esaurite (> 80% budget)
+
+Se raggiungi 3/4 condizioni, passa a self-play. Altrimenti:
+    Aumenta dataset
+    Aggiungi attention mechanism
+    Sperimenta con architetture transformer-based
+
+
+2023-11-15 14:30:22,123 - evaluator - INFO - Iniziando la valutazione: 20 partite con 100 simulazioni MCTS per mossa
+Simulando partite: 100%|██████████| 20/20 [12:35<00:00, 37.78s/game]
+2023-11-15 14:32:57,456 - evaluator - INFO - Partita 1: Nuovo modello (Bianco) vince
+2023-11-15 14:33:12,789 - evaluator - INFO - Partita 2: Patta
+2023-11-15 14:33:28,112 - evaluator - INFO - Partita 3: Vecchio modello (Bianco) vince
+2023-11-15 14:33:45,223 - evaluator - INFO - Partita 4: Nuovo modello (Nero) vince
+2023-11-15 14:34:01,556 - evaluator - INFO - Partita 5: Terminata per limite di mosse
+2023-11-15 14:34:17,889 - evaluator - INFO - Partita 6: Patta
+[...]
+2023-11-15 14:42:50,123 - evaluator - INFO - Valutazione completata: 11 vittorie, 4 patte, 5 sconfitte
+2023-11-15 14:42:50,124 - evaluator - INFO - Tasso di vittoria del nuovo modello: 65.00%
+
+=== DETTAGLI PARTITE PARALLELE ===
+Thread Worker-1:
+  - Partita 1: 37.2s - Risultato: 1-0 (Vittoria Bianco)
+  - Partita 5: 36.8s - Risultato: 1/2-1/2 (Patta)
+Thread Worker-2:
+  - Partita 2: 38.1s - Risultato: 1/2-1/2 (Patta)
+  - Partita 6: 37.5s - Risultato: 0-1 (Vittoria Nero)
+[...]
+
+=== RIEPILOGO FINALE ===
+Tempo totale: 12 min 35 sec
+Velocità media: 37.78s/partita
+Utilizzo CPU: 380% (4 core)
+Vittorie nuovo modello: 11/20 (55%)
+Pareggi: 4/20 (20%)
+Vittorie vecchio modello: 5/20 (25%)
+Score normalizzato: 65.00%
