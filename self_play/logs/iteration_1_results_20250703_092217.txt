@@ -1,0 +1,28 @@
+=== Risultati Iterazione 1 ===
+
+Data e ora: 2025-07-03 09:22:17
+
+Parametri di configurazione:
+  num_iterations: 10
+  games_per_iteration: 10
+  mcts_simulations: 800
+  training_epochs: 10
+  batch_size: 256
+  learning_rate: 0.001
+  dirichlet_alpha: 0.5
+  dirichlet_weight: 0.25
+  temperature: 1.0
+  temperature_drop_move: 30
+  evaluation_games: 40
+  win_rate_threshold: 0.55
+  c_puct: 4.0
+  num_workers: 3
+
+Metriche di training finali:
+  Loss totale: 5.2560
+  Policy loss: 4.8097
+  Value loss: 0.4355
+  Policy accuracy: 0.3566
+
+Risultati valutazione:
+  Win rate vs modello precedente: 0.5000
